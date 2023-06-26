@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-/*eslint-disable-next-line import/extensions*/
+
+/* eslint-disable import/extensions */
+
 import getBudgetObject from './7-getBudgetObject.js';
 
 export default function getFullBudgetObject(income, gdp, capita) {
