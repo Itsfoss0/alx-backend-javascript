@@ -1,6 +1,6 @@
 ![img](https://assets.imaginablefutures.com/media/images/ALX_Logo.max-200x150.png)
 
-![one-does-not-simply-await](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2019/12/75862d67ca51a042003c.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230628%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230628T111335Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=3da58639d9825eb20c1cc4e422c7183ffbe6de2404adaf5a1e0e3a24786d8f57)
+![one-does-not-simply-await](/assets/one-does-not.jpeg)
 
 
 ## About
