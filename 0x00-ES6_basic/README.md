@@ -7,7 +7,7 @@ For this project, look at the following concepts
 - [Sofware Linter](https://intranet.alxswe.com/concepts/542)
 
 
-![is-this-this](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2019/12/08806026ef621f900121.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230626%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230626T145326Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=59b4cc8744c5444e02fe446592828c45fd88dadd273b4b770ee83a19ceb3a138)
+![is-this-this](/assets/is-this-this.png)
 
 
 ## Resources
