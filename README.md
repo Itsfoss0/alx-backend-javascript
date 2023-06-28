@@ -9,4 +9,6 @@ This Repo documents the concepts, projects and resources learning Modern JavaScr
 
 ## Table of contents
 [0x00](0x00-ES6_basic): Introduction to ES6
+[0x01](0x01-ES6_promise): JavaScript Promises
+
 
