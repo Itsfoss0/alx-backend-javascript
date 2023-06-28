@@ -8,12 +8,9 @@
  * And make only promises you can keep
  * even if that means making empty promises
 */
-function getResponseFromAPI() {
+export default function getResponseFromAPI() {
   return new Promise((res, rej) => {
     res('Hi Mom');
     rej('Rejected');
   });
 }
-
-const response = getResponseFromAPI();
-console.log(response instanceof Promise);
