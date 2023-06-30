@@ -11,11 +11,11 @@
  * Lets go dig some graves
 */
 
-class HolbertonCourse {
+export default class HolbertonCourse {
   constructor(name, length, students) {
     this._name = name,
     this._length = length;
-    this.students = students;
+    this._students = students;
   }
 
   /* define the getters for the class */
@@ -53,5 +53,6 @@ class HolbertonCourse {
     if (typeof studArray !== 'object') {
       throw new TypeError('Students must be an object');
     }
+    this._students = studArray;
   }
 }
