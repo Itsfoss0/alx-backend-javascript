@@ -55,7 +55,7 @@ export default class HolbertonCourse {
     if (typeof newlength !== 'number') {
       throw new TypeError('Length must be a number');
     }
-    this.length = newlength;
+    this._length = newlength;
   }
 
   set students(studArray) {
