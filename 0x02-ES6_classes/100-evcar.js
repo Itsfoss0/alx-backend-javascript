@@ -10,6 +10,6 @@ export default class EvCar extends Car {
 
   /* implement getters and setter here */
   cloneCar() {
-    return new super.constructor();
+    return new Car();
   }
 }
