@@ -1,4 +1,6 @@
-/* eslint-disable no-underscore-dangle */
+#!/usr/bin/env node
+
+/* eslint-disable */
 
 /*
  * Its not about the money money money
