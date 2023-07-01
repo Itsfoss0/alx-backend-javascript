@@ -17,7 +17,10 @@ export default class HolbertonCourse {
       throw new TypeError('Name must be a string');
     }
     if (!Number.isInteger(length)) {
-      throw new TypeError('');
+      throw new TypeError('Length must be a number');
+    }
+    if (!Array.isArray(students)) {
+      throw new TypeError('Students must be an array');
     }
     this._name = name,
     this._length = length;
@@ -37,15 +40,15 @@ export default class HolbertonCourse {
     return this._students;
   }
 
-  /* Settters used to trip me up,
-     * or should I say, set me up
-    */
+  /*
+    * Settters used to trip me up,
+    * or should I say, set me up
+  */
   set name(newName) {
-    if (typeof newName === 'string') {
-      this._name = newName;
-    } else {
+    if (typeof newName !== 'string') {
       throw new TypeError('Name must be a string');
     }
+    this._name = newName;
   }
 
   set length(newlength) {
@@ -56,8 +59,8 @@ export default class HolbertonCourse {
   }
 
   set students(studArray) {
-    if (typeof studArray !== 'object') {
-      throw new TypeError('Students must be an object');
+    if (!Array.isArray(studArray)) {
+      throw new TypeError('Students must be an array');
     }
     this._students = studArray;
   }
