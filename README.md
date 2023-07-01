@@ -12,4 +12,6 @@ This Repo documents the concepts, projects and resources learning Modern JavaScr
 
 [0x01](0x01-ES6_promise): JavaScript Promises
 
+[0x02](0x02-ES6_classes): JavaScript Classes
+
 
