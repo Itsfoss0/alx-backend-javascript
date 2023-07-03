@@ -14,4 +14,4 @@ This Repo documents the concepts, projects and resources learning Modern JavaScr
 
 [0x02](0x02-ES6_classes): JavaScript Classes
 
-
+[0x03](0x03-ES6_data_manipulation): Data Manipulation
