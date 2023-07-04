@@ -14,10 +14,11 @@ export default function cleanSet(set, startString) {
     throw new TypeError(`${startString} is not a valid string`);
   }
   const len = startString.length;
-  if (len >= 1 && startString !== undefined) {
-    return Array.from(set)
-      .filter((string) => string.startsWith(startString))
-      .map((string) => string.slice(len)).join('-');
+  if (startString === undefined || len === 0) {
+    return '';
   }
-  return '';
+  return [...set]
+    .filter((str) => (str !== undefined ? str.startsWith(startString) : ''))
+    .map((str) => (str !== undefined ? str.slice(len) : ''))
+    .join('-');
 }
