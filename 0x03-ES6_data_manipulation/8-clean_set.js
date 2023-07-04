@@ -15,10 +15,9 @@ export default function cleanSet(set, startString) {
   }
   const len = startString.length;
   if (len >= 1 && startString !== undefined) {
-    const stringArray = Array.from(set);
-    const matchStrings = stringArray.filter((string) => string.startsWith(startString));
-    const stringPartTwo = matchStrings.map((string) => string.slice(len));
-    return stringPartTwo.join('-');
+    return Array.from(set)
+    .filter((string) => string.startsWith(startString))
+    .map((string) => string.slice(len))
   }
   return '';
 }
