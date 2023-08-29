@@ -12,13 +12,13 @@ function school(message, callback) {
 }
 
 function closingCallBack(data) {
-  process.stdout.write(`Your name is: ${data}`);
+  process.stdout.write(`Your name is: ${data.toString()}`);
   process.stdout.write('This important software is now closing\n');
   process.exit();
 }
 
 function noClosingCallBack(data) {
-  process.stdout.write(`Your name is: ${data}`);
+  process.stdout.write(`Your name is: ${data.toString()}`);
   process.exit();
 }
 
