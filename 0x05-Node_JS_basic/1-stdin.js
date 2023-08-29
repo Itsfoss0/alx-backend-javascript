@@ -2,23 +2,23 @@
 
 /* a simple ad hoc script to practice nodejs */
 
-const WELCOME_MESSAGE_STUB = 'Welcome to Holberton School, what is your name?';
+const WELCOME_MESSAGE_STUB = 'Welcome to Holberton School, what is your name?\n';
 
 function school(message, callback) {
-  console.log(message);
+  process.stdout.write(message);
   process.stdin.on('data', (data) => {
     callback(data);
   });
 }
 
 function closingCallBack(data) {
-  console.log(`Your name is: ${data}`);
-  console.log('This important software is now closing');
+  process.stdout.write(`Your name is: ${data}\n`);
+  process.stdout.write('This important software is now closing\n');
   process.exit();
 }
 
 function noClosingCallBack(data) {
-  console.log(`Your name is: ${data}`);
+  process.stdout.write(`Your name is: ${data}\n`);
   process.exit();
 }
 
