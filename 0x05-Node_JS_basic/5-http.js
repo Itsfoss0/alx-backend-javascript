@@ -1,84 +1,78 @@
 #!/usr/bin/env node
-const { promisify } = require('util');
-const { readFile } = require('fs');
-const { createServer } = require('http');
+const http = require('http');
+const { readFile } = require('fs/promises'); // Using promises-based fs module
 
-const readFileAsync = promisify(readFile);
-const HOST = '127.0.0.1';
-const PORT = 1245;
+const hostname = '127.0.0.1';
+const port = 1245;
+
+async function readStudentsData(fileName) {
+  const data = await readFile(fileName, 'utf-8');
+  return data.trim().split('\n').slice(1); // Skip header line
+}
 
 function parseCsvLine(line) {
   return line.split(',').map((item) => item.trim());
 }
 
-async function countStudents(fileName) {
+function countStudents(dataLines) {
   const students = {};
   const fields = {};
 
-  try {
-    const data = await readFileAsync(fileName, 'utf-8');
-    const lines = data.trim().split('\n');
-    lines.shift(); // Remove header line
-    lines.forEach((line) => {
-      const [firstName, , , field] = parseCsvLine(line);
+  dataLines.forEach((line) => {
+    const [, firstName, , , field] = parseCsvLine(line); // Skip second element
+    students[field] = students[field] || [];
+    students[field].push(firstName);
+    fields[field] = (fields[field] || 0) + 1;
+  });
 
-      students[field] = students[field] || [];
-      students[field].push(firstName);
-
-      fields[field] = (fields[field] || 0) + 1;
-    });
-
-    const totalStudents = lines.length;
-    const results = {
-      totalStudents,
-      fields: {},
-    };
-
-    for (const [key, value] of Object.entries(fields)) {
-      if (key !== 'field') {
-        results.fields[key] = {
-          numberOfStudents: value,
-          studentList: students[key].join(', '),
-        };
-      }
-    }
-
-    return results;
-  } catch (error) {
-    throw new Error('Cannot load the database');
-  }
+  return { students, fields };
 }
 
-// countStudents('database.csv').then((data) => {
-//     console.log(data)
-// })
-// .catch((error) => {
-//     console.log(error)
-// })
+function generateResponse(data) {
+  let response = `Number of students: ${data.totalStudents}\n`;
+  for (const [field, info] of Object.entries(data.fields)) {
+    response += `Number of students in ${field}: ${info.numberOfStudents}. List: ${info.studentList}\n`;
+  }
+  return response;
+}
 
-// create a simple http server
+const app = http.createServer(async (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
 
-const app = createServer((req, res) => {
-  res.setHeader('Content-Type', 'application/text');
   if (req.url === '/') {
     res.end('Hello Holberton School!');
-  } else if (req.url === '/students') {
-    countStudents(process.argv[2]).then((data) => {
-      res.write('This is the list of our students\n');
-      res.write(`Number of students: ${data.totalStudents}\n`);
-      for (const [fieldName, fieldData] of Object.entries(data.fields)) {
-        res.write(`Number of students in ${fieldName}: ${fieldData.numberOfStudents}. List: ${fieldData.studentList}\n`);
+    return;
+  }
+
+  if (req.url === '/students') {
+    try {
+      const dataLines = await readStudentsData(process.argv[2].toString());
+      const { students, fields } = countStudents(dataLines);
+
+      const data = {
+        totalStudents: dataLines.length,
+        fields: {},
+      };
+
+      for (const [key, value] of Object.entries(fields)) {
+        if (key !== 'field') {
+          data.fields[key] = {
+            numberOfStudents: value,
+            studentList: students[key].join(', '),
+          };
+        }
       }
 
-      res.end('');
-    })
-      .catch((err) => {
-        res.statusCode = 404;
-        res.end(err);
-      });
+      const response = generateResponse(data);
+      res.end(response);
+    } catch (error) {
+      res.statusCode = 404;
+      res.end('Cannot load the database');
+    }
   }
 });
 
-app.listen(PORT, HOST, () => {});
+app.listen(port, hostname, () => {});
 
 module.exports = app;
