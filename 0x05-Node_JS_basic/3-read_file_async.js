@@ -1,30 +1,47 @@
 #!/usr/bin/env node
 
-const fs = require('fs/promises');
+/* reading files async */
+/* eslint-disable no-unused-vars */
 
-async function countStudents(path) {
-  try {
-    const data = await fs.readFile(path, 'utf-8');
-    const sData = data.trim().split('\n');
-    const fullData = sData.slice(1);
-    console.log(`Number of students: ${fullData.length}`);
+const { promisify } = require('util');
+const { readFile } = require('fs');
 
-    const groupMap = {};
+const readFileAsync = promisify(readFile);
 
-    for (const entry of fullData) {
-      const [firstName, , , group] = entry.split(',');
-      if (!groupMap[group]) {
-        groupMap[group] = [];
+function parseCsvLine(line) {
+  return line.split(',').map((item) => item.trim());
+}
+
+function countStudents(fileName) {
+  const students = {};
+  const fields = {};
+
+  return readFileAsync(fileName, 'utf-8')
+    .then((data) => {
+      const lines = data.trim().split('\n');
+      lines.shift(); // Remove header line
+      lines.forEach((line) => {
+        const [firstName, , , field] = parseCsvLine(line);
+
+        students[field] = students[field] || [];
+        students[field].push(firstName);
+
+        fields[field] = (fields[field] || 0) + 1;
+      });
+
+      const totalStudents = lines.length;
+      console.log(`Number of students: ${totalStudents}`);
+
+      for (const [key, value] of Object.entries(fields)) {
+        if (key !== 'field') {
+          const studentList = students[key].join(', ');
+          console.log(`Number of students in ${key}: ${value}. List: ${studentList}`);
+        }
       }
-      groupMap[group].push(firstName);
-    }
-
-    for (const [group, studentsInGroup] of Object.entries(groupMap)) {
-      console.log(`Number of students in ${group}: ${studentsInGroup.length}. List: ${studentsInGroup.join(', ')}`);
-    }
-  } catch (err) {
-    throw new Error('Cannot load the database');
-  }
+    })
+    .catch((error) => {
+      throw new Error('Cannot load the database');
+    });
 }
 
 module.exports = countStudents;
