@@ -73,7 +73,8 @@ app.get('/students', (req, resp) => {
   })
     .catch((error) => {
       resp.statusCode = 404;
-      resp.send('Cannot load the database');
+      resp.write('This is the list of our students\n');
+      resp.end('Cannot load the database\n');
     });
 });
 app.listen(PORT, HOST, () => {});
