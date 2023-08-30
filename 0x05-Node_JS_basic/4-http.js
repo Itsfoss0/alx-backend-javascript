@@ -2,12 +2,12 @@
 
 /* a simple http server */
 
-const { createServer } = require('http');
+const http = require('http');
 
 const PORT = 1245;
 const HOST = '127.0.0.1';
 
-const app = createServer((req, resp) => {
+const app = http.createServer((req, resp) => {
   resp.setHeader('Content-Type', 'text/plain');
   resp.end('Hello Holberton School!');
 });
