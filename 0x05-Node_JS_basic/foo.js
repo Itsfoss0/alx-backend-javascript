@@ -14,7 +14,7 @@
 // const file = fs.readFile('database.csv', 'utf8', (err, data) => {
 //     if (err){
 //         console.error('Failed')
-//         return 
+//         return
 //     }
 //     const sdata = data.split("\n")
 //     const fulData = sdata.splice(1, data.length)
