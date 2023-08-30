@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 /* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-vars */
 
 const { promisify } = require('util');
 const { readFile } = require('fs');
@@ -70,10 +71,10 @@ app.get('/students', (req, resp) => {
 
     resp.end();
   })
-  .catch( (error) => {
-    resp.statusCode = 404
-    resp.send('Cannot load the database')
-  });
+    .catch((error) => {
+      resp.statusCode = 404;
+      resp.send('Cannot load the database');
+    });
 });
 app.listen(PORT, HOST, () => {});
 
