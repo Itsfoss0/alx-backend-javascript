@@ -61,7 +61,7 @@ app.get('/', (req, resp) => {
 });
 
 app.get('/students', (req, resp) => {
-  countStudents('database.csv').then((data) => {
+  countStudents(process.argv[2]).then((data) => {
     resp.write('This is the list of our students\n');
     resp.write(`Number of students: ${data.totalStudents}\n`);
     for (const [fieldName, fieldData] of Object.entries(data.fields)) {
@@ -69,6 +69,10 @@ app.get('/students', (req, resp) => {
     }
 
     resp.end();
+  })
+  .catch( (error) => {
+    resp.statusCode = 404
+    resp.send('Cannot load the database')
   });
 });
 app.listen(PORT, HOST, () => {});
