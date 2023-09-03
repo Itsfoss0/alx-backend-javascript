@@ -18,6 +18,6 @@ This Repo documents the concepts, projects and resources learning Modern JavaScr
 
 [0x04](0x04-TypeScript): TypeScript
 
-[0x05)[0x05-Node_JS_basic): NodeJS Basics
+[0x05](0x05-Node_JS_basic): NodeJS Basics
 
 [0x06](0x06-unittests_in_js): Unit testing
