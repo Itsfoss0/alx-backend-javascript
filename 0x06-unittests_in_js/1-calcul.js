@@ -1,19 +1,25 @@
 #!/usr/bin/env node
 
-function calculateNumber(type, numA, numB){
-    try{
-
-        if (type === "ADD"){
-            return (Math.round(numA) + Math.round(numB))
-        }else if (type === "DIVIDE"){
-            return (Math.round(numB === 0)) ? "Error" : (Math.round(numA) / Math.round(numB))
-        }else if (type === "SUBTRACT"){
-            return (Math.round(numA) - Math.round(numB))
-        }
-    } catch(err){
-        return (err)
+/* eslint-disable consistent-return */
+function calculateNumber(type, numA, numB) {
+  try {
+    const roundedA = Math.round(numA);
+    const roundedB = Math.round(numB);
+    if (type === 'ADD') {
+      return roundedA + roundedB;
+    } if (type === 'MULTIPLY') {
+      return roundedA * roundedB;
+    } if (type === 'SUBTRACT') {
+      return roundedA - roundedB;
+    } if (type === 'DIVIDE') {
+      if (roundedB === 0) {
+        return 'Error';
+      }
+      return (roundedA / roundedB);
     }
-    
+  } catch (err) {
+    return (err);
+  }
 }
 
-module.exports = calculateNumber
+module.exports = calculateNumber;
