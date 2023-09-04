@@ -5,7 +5,7 @@ function calculateNumber(type, numA, numB) {
   try {
     const roundedA = Math.round(numA);
     const roundedB = Math.round(numB);
-    if (type === 'ADD') {
+    if (type === 'SUM') {
       return roundedA + roundedB;
     } if (type === 'MULTIPLY') {
       return roundedA * roundedB;
