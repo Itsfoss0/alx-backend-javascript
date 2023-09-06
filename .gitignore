@@ -18,3 +18,4 @@
 **/.eslintrc.js
 **/node_modules
 **/[0-9]-main.js
+**/foo.*
