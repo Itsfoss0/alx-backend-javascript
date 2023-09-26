@@ -4,7 +4,7 @@
 
 const sinon = require('sinon');
 const { expect } = require('chai');
-const { getPaymentTokenFromAPI } = require('./6-payment_tokken');
+const { getPaymentTokenFromAPI } = require('./6-payment_token');
 
 describe('getPaymentTokenFromAPI', () => {
   it('getPaymentTokenFromAPI', (done) => {
