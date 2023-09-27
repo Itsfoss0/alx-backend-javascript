@@ -1,14 +1,11 @@
 #!/usr/bin/env node
 
-/* eslint-disable */
+/* eslint-disable no-unused-vars */
 
+const getPaymentTokenFromAPI = (success) => new Promise((resolve, reject) => {
+  if (success) {
+    resolve({ data: 'Successful response from the API' });
+  }
+});
 
-module.exports = {
-    getPaymentTokenFromAPI: function(success){
-        if (success){
-            return new Promise((resolve, reject) => {
-                resolve({data: 'Successful response from the API' })
-            })
-        }
-    }
-}
+module.exports = getPaymentTokenFromAPI;
